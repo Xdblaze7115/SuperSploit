@@ -1071,3 +1071,4 @@ function SuperSploit:CreateLibrary(title)
 	end
 	return GUI
 end
+return SuperSploit
