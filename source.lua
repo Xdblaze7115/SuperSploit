@@ -385,6 +385,7 @@ function SuperSploit:CreateLibrary(title)
 		Tab_2.BorderSizePixel = 0
 		Tab_2.Size = UDim2.new(0, 325, 0, 375)
 		Tab_2.ScrollBarThickness = 0
+		Tab_2.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
 		UIListLayout_2.Parent = Tab_2
 		UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
@@ -393,10 +394,6 @@ function SuperSploit:CreateLibrary(title)
 
 		UIPadding_3.Parent = Tab_2
 		UIPadding_3.PaddingTop = UDim.new(0, 8)
-		
-		Tab_2.ChildAdded:Connect(function(child)
-			Tab_2.CanvasSize = UDim2.new(0, 0, 0, (UIListLayout_2.AbsoluteContentSize.Y + 15))
-		end)
 		
 		if CurrentTabid == 1 then
 			SuperSploit:Tween(Tab, {BackgroundColor3 = Color3.fromRGB(80, 80, 80)})
