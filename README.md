@@ -39,7 +39,7 @@ local Dropdown = Window:CreateDropDown("Select an Option", options, function(sel
 end)</p>
 
 <h2>Add A Notification<h2>
-<p></p>
+<p>local Notification = SuperSploit:CreateNotification("Test Title", "This is a description for the test.", 5)</p>
 
 <h2>Create A Info Label<h2>
 <p>local Info = Window:CreateInfo("Info")</p>
