@@ -343,7 +343,7 @@ function SuperSploit:CreateLibrary(title)
 			CountDownTween:Play()
 
 			wait(Duration)
-			NotificationFrame:Destroy()
+			Notification:Destroy()
 		end)
 	end
 
