@@ -376,7 +376,7 @@ function SuperSploit:CreateLibrary(title, gametxt)
 		Tab.Size = UDim2.new(0, 100, 0, 25)
 		Tab.AutoButtonColor = false
 		Tab.Font = Enum.Font.FredokaOne
-		Tab.Text = "Tab"
+		Tab.Text = name
 		Tab.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Tab.TextSize = 14.000
 
