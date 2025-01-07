@@ -33,7 +33,7 @@ end)</code></pre>
 
 <h2>Create A Dropdown</h2>
 <pre><code>local options = {"Option 1", "Option 2", "Option 3"}
-	local Dropdown = Window:CreateDropDown("Select an Option", options, function(selectedOption)
+local Dropdown = Window:CreateDropDown("Select an Option", options, function(selectedOption)
 	print("You selected: " .. selectedOption)
 end)</code></pre>
 
