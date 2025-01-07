@@ -47,7 +47,7 @@ end)</code></pre>
 <h2>Add A Not Working Warning</h2>
 <pre><code>local Info = Window:CreateStatusBad()</code></pre>
   
-<h2>Add A Somethings Are Not Working Warning</h2>
+<h2>Add A Some things Are Not Working Warning</h2>
 <pre><code>local Info = Window:CreateStatusOkay()</code></pre>
   
 <h2>Add A Working Warning</h2>
