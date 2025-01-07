@@ -48,171 +48,157 @@ function SuperSploit:Tween(object, goal, callback)
 	tween:Play()
 end
 
-function SuperSploit:CreateLibrary(title)
-	local SuperSploitLibrary = Instance.new("ScreenGui")
+function SuperSploit:CreateLibrary(title, gametxt)
+	local SuperSploitGUI = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
-	local NotificationFrame = Instance.new("Frame")
-	local UIListLayout_2 = Instance.new("UIListLayout")
-	local UIPadding_3 = Instance.new("UIPadding")
 	local UICorner = Instance.new("UICorner")
-	local Top = Instance.new("Frame")
+	local Navigation = Instance.new("Frame")
 	local UICorner_2 = Instance.new("UICorner")
 	local CornerFix = Instance.new("Frame")
-	local Title = Instance.new("TextLabel")
-	local UIPadding = Instance.new("UIPadding")
-	local Close = Instance.new("TextButton")
-	local Minimise = Instance.new("TextButton")
-	local Navigation = Instance.new("Frame")
-	local UICorner_3 = Instance.new("UICorner")
-	local CornerFix_2 = Instance.new("Frame")
-	local CornerFix_3 = Instance.new("Frame")
 	local NavigationFrame = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
-	local UIPadding_2 = Instance.new("UIPadding")
+	local UIPadding = Instance.new("UIPadding")
+	local Top = Instance.new("Frame")
+	local UICorner_3 = Instance.new("UICorner")
+	local CornerFix_2 = Instance.new("Frame")
+	local Title = Instance.new("TextLabel")
+	local Close = Instance.new("TextButton")
+	local Minimise = Instance.new("TextButton")
+	local GameTxt = Instance.new("TextLabel")
 	local ContentFrame = Instance.new("Frame")
-	
-	SuperSploitLibrary.Name = "SuperSploitLibrary"
-	SuperSploitLibrary.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	SuperSploitLibrary.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	local NotificationFrame = Instance.new("Frame")
+	local UIListLayout_3 = Instance.new("UIListLayout")
+	local UIPadding_3 = Instance.new("UIPadding")
+
+	SuperSploitGUI.Name = "SuperSploit"
+	SuperSploitGUI.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+	SuperSploitGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	SuperSploitGUI.ResetOnSpawn = false
 
 	Main.Name = "Main"
-	Main.Parent = SuperSploitLibrary
+	Main.Parent = SuperSploitGUI
 	Main.AnchorPoint = Vector2.new(0.5, 0.5)
 	Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Main.Size = UDim2.new(0, 450, 0, 400)
-
-	NotificationFrame.Name = "NotificationFrame"
-	NotificationFrame.Parent = SuperSploitLibrary
-	NotificationFrame.AnchorPoint = Vector2.new(1, 1)
-	NotificationFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	NotificationFrame.BackgroundTransparency = 1.000
-	NotificationFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	NotificationFrame.BorderSizePixel = 0
-	NotificationFrame.Position = UDim2.new(1, 0, 1, 0)
-	NotificationFrame.Size = UDim2.new(0, 225, 1, 0)
-
-	NavigationFrame.Name = "NavigationFrame"
-	NavigationFrame.Parent = Navigation
-	NavigationFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	NavigationFrame.BackgroundTransparency = 1.000
-	NavigationFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	NavigationFrame.BorderSizePixel = 0
-	NavigationFrame.Size = UDim2.new(0, 125, 0, 375)
-	NavigationFrame.ZIndex = 2
-
-	UIListLayout_2.Parent = NotificationFrame
-	UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-	UIListLayout_2.VerticalAlignment = Enum.VerticalAlignment.Bottom
-	UIListLayout_2.Padding = UDim.new(0, 8)
-
-	UIPadding_3.Parent = NotificationFrame
-	UIPadding_3.PaddingBottom = UDim.new(0, 25)
-	UIPadding_3.PaddingRight = UDim.new(0, 25)
+	Main.Size = UDim2.new(0, 500, 0, 350)
 
 	UICorner.Parent = Main
-
-	Top.Name = "Top"
-	Top.Parent = Main
-	Top.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Top.BorderSizePixel = 0
-	Top.Size = UDim2.new(0, 450, 0, 25)
-
-	UICorner_2.Parent = Top
-
-	CornerFix.Name = "CornerFix"
-	CornerFix.Parent = Top
-	CornerFix.AnchorPoint = Vector2.new(0, 1)
-	CornerFix.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	CornerFix.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	CornerFix.BorderSizePixel = 0
-	CornerFix.Position = UDim2.new(0, 0, 1, 0)
-	CornerFix.Size = UDim2.new(0, 450, 0, 15)
-
-	Title.Name = "Title"
-	Title.Parent = Top
-	Title.AnchorPoint = Vector2.new(1, 0)
-	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Title.BackgroundTransparency = 1.000
-	Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Title.BorderSizePixel = 0
-	Title.Position = UDim2.new(1, 0, 0, 0)
-	Title.Size = UDim2.new(0, 450, 0, 25)
-	Title.Font = Enum.Font.Ubuntu
-	Title.Text = title or "SuperSploit Hub"
-	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Title.TextSize = 14.000
-	Title.TextXAlignment = Enum.TextXAlignment.Left
-
-	UIPadding.Parent = Title
-	UIPadding.PaddingLeft = UDim.new(0, 16)
-
-	Close.Name = "Close"
-	Close.Parent = Top
-	Close.AnchorPoint = Vector2.new(1, 0)
-	Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Close.BackgroundTransparency = 1.000
-	Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Close.BorderSizePixel = 0
-	Close.Position = UDim2.new(1, 0, 0, 0)
-	Close.Size = UDim2.new(0, 25, 0, 25)
-	Close.Font = Enum.Font.FredokaOne
-	Close.Text = "X"
-	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Close.TextSize = 14.000
-
-	Minimise.Name = "Minimise"
-	Minimise.Parent = Top
-	Minimise.AnchorPoint = Vector2.new(1, 0)
-	Minimise.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Minimise.BackgroundTransparency = 1.000
-	Minimise.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Minimise.BorderSizePixel = 0
-	Minimise.Position = UDim2.new(0.939999998, 0, 0, 0)
-	Minimise.Size = UDim2.new(0, 25, 0, 25)
-	Minimise.Font = Enum.Font.FredokaOne
-	Minimise.Text = "-"
-	Minimise.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Minimise.TextSize = 14.000
 
 	Navigation.Name = "Navigation"
 	Navigation.Parent = Main
 	Navigation.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 	Navigation.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Navigation.BorderSizePixel = 0
-	Navigation.Position = UDim2.new(0, 0, 0, 25)
-	Navigation.Size = UDim2.new(0, 125, 0, 375)
+	Navigation.Size = UDim2.new(0, 125, 0, 350)
 
-	UICorner_3.Parent = Navigation
+	UICorner_2.Parent = Navigation
 
-	CornerFix_2.Name = "CornerFix"
-	CornerFix_2.Parent = Navigation
-	CornerFix_2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	CornerFix_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	CornerFix_2.BorderSizePixel = 0
-	CornerFix_2.Size = UDim2.new(0, 125, 0, 15)
+	CornerFix.Name = "CornerFix"
+	CornerFix.Parent = Navigation
+	CornerFix.AnchorPoint = Vector2.new(1, 1)
+	CornerFix.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	CornerFix.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	CornerFix.BorderSizePixel = 0
+	CornerFix.Position = UDim2.new(1, 0, 1, 0)
+	CornerFix.Size = UDim2.new(0, 100, 0, 15)
+	CornerFix.ZIndex = 0
 
-	CornerFix_3.Name = "CornerFix"
-	CornerFix_3.Parent = Navigation
-	CornerFix_3.AnchorPoint = Vector2.new(1, 1)
-	CornerFix_3.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-	CornerFix_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	CornerFix_3.BorderSizePixel = 0
-	CornerFix_3.Position = UDim2.new(1, 0, 1, 0)
-	CornerFix_3.Size = UDim2.new(0, 90, 0, 15)
+	NavigationFrame.Name = "NavigationFrame"
+	NavigationFrame.Parent = Navigation
+	NavigationFrame.AnchorPoint = Vector2.new(0, 1)
+	NavigationFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	NavigationFrame.BackgroundTransparency = 1.000
+	NavigationFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	NavigationFrame.BorderSizePixel = 0
+	NavigationFrame.Position = UDim2.new(0, 0, 1, 0)
+	NavigationFrame.Size = UDim2.new(0, 125, 0, 325)
 
 	UIListLayout.Parent = NavigationFrame
 	UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.Padding = UDim.new(0, 8)
 
-	UIPadding_2.Parent = NavigationFrame
-	UIPadding_2.PaddingTop = UDim.new(0, 8)
-	
+	UIPadding.Parent = NavigationFrame
+	UIPadding.PaddingTop = UDim.new(0, 8)
+
+	Top.Name = "Top"
+	Top.Parent = Main
+	Top.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Top.BorderSizePixel = 0
+	Top.Size = UDim2.new(0, 500, 0, 25)
+
+	UICorner_3.Parent = Top
+
+	CornerFix_2.Name = "CornerFix"
+	CornerFix_2.Parent = Top
+	CornerFix_2.AnchorPoint = Vector2.new(0, 1)
+	CornerFix_2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	CornerFix_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	CornerFix_2.BorderSizePixel = 0
+	CornerFix_2.Position = UDim2.new(0, 0, 1, 0)
+	CornerFix_2.Size = UDim2.new(0, 500, 0, 15)
+	CornerFix_2.ZIndex = 0
+
+	Title.Name = "Title"
+	Title.Parent = Top
+	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title.BackgroundTransparency = 1.000
+	Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Title.BorderSizePixel = 0
+	Title.Size = UDim2.new(0, 100, 0, 25)
+	Title.Font = Enum.Font.FredokaOne
+	Title.Text = title
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextSize = 14.000
+	Title.TextWrapped = true
+
+	Close.Name = "Close"
+	Close.Parent = Top
+	Close.AnchorPoint = Vector2.new(1, 1)
+	Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Close.BackgroundTransparency = 1.000
+	Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Close.BorderSizePixel = 0
+	Close.Position = UDim2.new(1, 0, 1, 0)
+	Close.Size = UDim2.new(0, 25, 0, 25)
+	Close.Font = Enum.Font.FredokaOne
+	Close.Text = "x"
+	Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Close.TextSize = 14.000
+
+	Minimise.Name = "Minimise"
+	Minimise.Parent = Top
+	Minimise.AnchorPoint = Vector2.new(1, 1)
+	Minimise.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Minimise.BackgroundTransparency = 1.000
+	Minimise.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Minimise.BorderSizePixel = 0
+	Minimise.Position = UDim2.new(0.954999983, 0, 1, 0)
+	Minimise.Size = UDim2.new(0, 25, 0, 25)
+	Minimise.Font = Enum.Font.FredokaOne
+	Minimise.Text = "-"
+	Minimise.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Minimise.TextSize = 14.000
+
+	GameTxt.Name = "GameTxt"
+	GameTxt.Parent = Top
+	GameTxt.AnchorPoint = Vector2.new(1, 0)
+	GameTxt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	GameTxt.BackgroundTransparency = 1.000
+	GameTxt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	GameTxt.BorderSizePixel = 0
+	GameTxt.Position = UDim2.new(0.44933337, 0, 0, 0)
+	GameTxt.Size = UDim2.new(0, 100, 0, 25)
+	GameTxt.Font = Enum.Font.FredokaOne
+	GameTxt.Text = gametxt
+	GameTxt.TextColor3 = Color3.fromRGB(255, 255, 255)
+	GameTxt.TextSize = 10.000
+	GameTxt.TextWrapped = true
+	GameTxt.TextXAlignment = Enum.TextXAlignment.Left
+
 	ContentFrame.Name = "ContentFrame"
 	ContentFrame.Parent = Main
 	ContentFrame.AnchorPoint = Vector2.new(1, 1)
@@ -221,25 +207,34 @@ function SuperSploit:CreateLibrary(title)
 	ContentFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	ContentFrame.BorderSizePixel = 0
 	ContentFrame.Position = UDim2.new(1, 0, 1, 0)
-	ContentFrame.Size = UDim2.new(0, 325, 0, 375)
+	ContentFrame.Size = UDim2.new(0, 375, 0, 325)
+
+	NotificationFrame.Name = "NotificationFrame"
+	NotificationFrame.Parent = SuperSploitGUI
+	NotificationFrame.AnchorPoint = Vector2.new(1, 1)
+	NotificationFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	NotificationFrame.BackgroundTransparency = 1.000
+	NotificationFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	NotificationFrame.BorderSizePixel = 0
+	NotificationFrame.Position = UDim2.new(1, 0, 1, 0)
+	NotificationFrame.Size = UDim2.new(0, 225, 1, 0)
 	
 	Close.MouseButton1Click:Connect(function()
-		SuperSploitLibrary:Destroy()
+		SuperSploitGUI:Destroy()
 	end)
 	
-
 	local minimise = false
-	
+
 	Minimise.MouseButton1Click:Connect(function()
-		local Tween = TweenService:Create(Main, tweenInfo, {Size = UDim2.new(0, 450, 0, 25)})
-		local Tween2 = TweenService:Create(Main, tweenInfo, {Size = UDim2.new(0, 450, 0, 400)})
-		
+		local Tween = TweenService:Create(Main, tweenInfo, {Size = UDim2.new(0, 500, 0, 25)})
+		local Tween2 = TweenService:Create(Main, tweenInfo, {Size = UDim2.new(0, 500, 0, 350)})
+
 		if not minimise then
 			minimise = true
 			for _, v in pairs(Main:GetChildren()) do
 				if v:IsA("Frame") and v.Name ~= "Top" then
 					v.Visible = false
-				elseif v.Name == "Top" then
+				elseif v.Name == "Top" or  v.Name == "Navigation" then
 					v:WaitForChild("CornerFix").Visible = false
 				end
 			end
@@ -251,17 +246,17 @@ function SuperSploit:CreateLibrary(title)
 				for _, v in pairs(Main:GetChildren()) do
 					if v:IsA("Frame") and v.Name ~= "Top" then
 						v.Visible = true
-					elseif v.Name == "Top" then
+					elseif v.Name == "Top" or v.Name == "Navigation" then
 						v:WaitForChild("CornerFix").Visible = true
 					end
 				end
 			end)
 		end
 	end)
-	
+
 	SuperSploit:DraggingEnabled(Main)
 	
-	function SuperSploit:CreateNotification(TitleText, DescriptionText, Duration)
+	function SuperSploit:CreateNotification(titletxt, descriptiontxt, duration)
 		local Notification = Instance.new("Frame")
 		local UICorner = Instance.new("UICorner")
 		local Title = Instance.new("TextLabel")
@@ -271,13 +266,15 @@ function SuperSploit:CreateLibrary(title)
 		local UICorner_3 = Instance.new("UICorner")
 		local Description = Instance.new("TextLabel")
 		local UICorner_4 = Instance.new("UICorner")
-
+		local UIListLayout = Instance.new("UIListLayout")
+		local UIPadding = Instance.new("UIPadding")
+		
 		Notification.Name = "Notification"
 		Notification.Parent = NotificationFrame
 		Notification.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 		Notification.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Notification.BorderSizePixel = 0
-		Notification.Size = UDim2.new(0, 200, 0, 80)
+		Notification.Size = UDim2.new(0.888888896, 0, 0.158102766, 0)
 
 		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = Notification
@@ -289,10 +286,10 @@ function SuperSploit:CreateLibrary(title)
 		Title.BackgroundTransparency = 1.000
 		Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BorderSizePixel = 0
-		Title.Position = UDim2.new(1, 0, 0, 0)
-		Title.Size = UDim2.new(0, 200, 0, 25)
-		Title.Font = Enum.Font.Ubuntu
-		Title.Text = TitleText
+		Title.Position = UDim2.new(1.00000036, 0, 0, 0)
+		Title.Size = UDim2.new(1.00000036, 0, 0.328742206, 0)
+		Title.Font = Enum.Font.FredokaOne
+		Title.Text = titletxt
 		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Title.TextSize = 14.000
 
@@ -303,7 +300,7 @@ function SuperSploit:CreateLibrary(title)
 		CountDownFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CountDownFrame.BorderSizePixel = 0
 		CountDownFrame.Position = UDim2.new(0.5, 0, 1, 0)
-		CountDownFrame.Size = UDim2.new(0, 200, 0, 5)
+		CountDownFrame.Size = UDim2.new(1, 0, 0.0625, 0)
 
 		UICorner_2.CornerRadius = UDim.new(0, 4)
 		UICorner_2.Parent = CountDownFrame
@@ -313,7 +310,7 @@ function SuperSploit:CreateLibrary(title)
 		CountDown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		CountDown.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		CountDown.BorderSizePixel = 0
-		CountDown.Size = UDim2.new(0, 200, 0, 5)
+		CountDown.Size = UDim2.new(1, 0, 1, 0)
 
 		UICorner_3.CornerRadius = UDim.new(0, 4)
 		UICorner_3.Parent = CountDown
@@ -326,40 +323,50 @@ function SuperSploit:CreateLibrary(title)
 		Description.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Description.BorderSizePixel = 0
 		Description.Position = UDim2.new(1, 0, 0.621874988, 0)
-		Description.Size = UDim2.new(0, 200, 0, 50)
-		Description.Font = Enum.Font.Ubuntu
-		Description.Text = DescriptionText
+		Description.Size = UDim2.new(1, 0, 0.625, 0)
+		Description.Font = Enum.Font.FredokaOne
+		Description.Text = descriptiontxt
 		Description.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Description.TextSize = 14.000
 		Description.TextWrapped = true
 
 		UICorner_4.Parent = Description
+
+		UIListLayout.Parent = NotificationFrame
+		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+		UIListLayout.Padding = UDim.new(0, 8)
+
+		UIPadding.Parent = NotificationFrame
+		UIPadding.PaddingBottom = UDim.new(0, 25)
+		UIPadding.PaddingRight = UDim.new(0, 25)
 		
 		spawn(function()
-			local TweenInfo = TweenInfo.new(Duration, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+			local TweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
 			local Goal = {Size = UDim2.new(0, 0, 1, 0)}
 
 			local CountDownTween = TweenService:Create(CountDown, TweenInfo, Goal)
 			CountDownTween:Play()
 
-			wait(Duration)
+			wait(duration)
 			Notification:Destroy()
 		end)
 	end
-
-	local GUI = {}
 	
+	local GUI = {}
+
 	local Tabids = 0
 	
 	function GUI:CreateTab(name)
 		local CurrentTabid = Tabids + 1
 		Tabids = Tabids + 1
-		
+
 		local Tab = Instance.new("TextButton")
-		local UICorner_4 = Instance.new("UICorner")
+		local UICorner = Instance.new("UICorner")
 		local Tab_2 = Instance.new("ScrollingFrame")
 		local UIListLayout_2 = Instance.new("UIListLayout")
-		local UIPadding_3 = Instance.new("UIPadding")
+		local UIPadding_2 = Instance.new("UIPadding")
 		
 		Tab.Name = "Tab"
 		Tab.Parent = NavigationFrame
@@ -368,14 +375,14 @@ function SuperSploit:CreateLibrary(title)
 		Tab.BorderSizePixel = 0
 		Tab.Size = UDim2.new(0, 100, 0, 25)
 		Tab.AutoButtonColor = false
-		Tab.Font = Enum.Font.Ubuntu
-		Tab.Text = name
+		Tab.Font = Enum.Font.FredokaOne
+		Tab.Text = "Tab"
 		Tab.TextColor3 = Color3.fromRGB(255, 255, 255)
 		Tab.TextSize = 14.000
 
-		UICorner_4.CornerRadius = UDim.new(0, 4)
-		UICorner_4.Parent = Tab
-
+		UICorner.CornerRadius = UDim.new(0, 4)
+		UICorner.Parent = Tab
+		
 		Tab_2.Name = tostring(CurrentTabid)
 		Tab_2.Parent = ContentFrame
 		Tab_2.Active = true
@@ -383,8 +390,8 @@ function SuperSploit:CreateLibrary(title)
 		Tab_2.BackgroundTransparency = 1.000
 		Tab_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Tab_2.BorderSizePixel = 0
-		Tab_2.Size = UDim2.new(0, 325, 0, 375)
-		Tab_2.ScrollBarThickness = 0
+		Tab_2.Size = UDim2.new(0, 375, 0, 325)
+		Tab_2.ScrollBarThickness = 6
 		Tab_2.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
 		UIListLayout_2.Parent = Tab_2
@@ -392,8 +399,8 @@ function SuperSploit:CreateLibrary(title)
 		UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 		UIListLayout_2.Padding = UDim.new(0, 8)
 
-		UIPadding_3.Parent = Tab_2
-		UIPadding_3.PaddingTop = UDim.new(0, 8)
+		UIPadding_2.Parent = Tab_2
+		UIPadding_2.PaddingTop = UDim.new(0, 8)
 		
 		if CurrentTabid == 1 then
 			SuperSploit:Tween(Tab, {BackgroundColor3 = Color3.fromRGB(80, 80, 80)})
@@ -406,7 +413,7 @@ function SuperSploit:CreateLibrary(title)
 				end
 			end
 		end
-		
+
 		Tab.MouseButton1Click:Connect(function()
 			for _, v in pairs(ContentFrame:GetChildren()) do
 				if tonumber(v.Name) == CurrentTabid then
@@ -425,10 +432,9 @@ function SuperSploit:CreateLibrary(title)
 		
 		function GUI:CreateLabel(txt)
 			local Label = Instance.new("Frame")
-			local TextLabel_5 = Instance.new("TextLabel")
-			local UICorner_9 = Instance.new("UICorner")
-			local UIStroke = Instance.new("UIStroke")
-
+			local TextLabel = Instance.new("TextLabel")
+			local UICorner = Instance.new("UICorner")
+			
 			Label.Name = "Label"
 			Label.Parent = Tab_2
 			Label.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -436,33 +442,28 @@ function SuperSploit:CreateLibrary(title)
 			Label.BorderSizePixel = 0
 			Label.Size = UDim2.new(0, 300, 0, 25)
 
-			TextLabel_5.Parent = Label
-			TextLabel_5.AnchorPoint = Vector2.new(1, 0)
-			TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_5.BackgroundTransparency = 1.000
-			TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel_5.BorderSizePixel = 0
-			TextLabel_5.Position = UDim2.new(1, 0, 0, 0)
-			TextLabel_5.Size = UDim2.new(0, 300, 0, 25)
-			TextLabel_5.Font = Enum.Font.Ubuntu
-			TextLabel_5.Text = txt
-			TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_5.TextSize = 14.000
+			TextLabel.Parent = Label
+			TextLabel.AnchorPoint = Vector2.new(1, 0)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(1, 0, 0, 0)
+			TextLabel.Size = UDim2.new(0, 300, 0, 25)
+			TextLabel.Font = Enum.Font.FredokaOne
+			TextLabel.Text = txt
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextSize = 14.000
 
-			UICorner_9.CornerRadius = UDim.new(0, 4)
-			UICorner_9.Parent = Label
-			
-			UIStroke.Color = Color3.fromRGB(120, 120, 120)
-			UIStroke.Thickness = 1.5
-			UIStroke.Parent = Label
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = Label
 		end
-		
+
 		function GUI:CreateButton(txt, callback)
 			local Button = Instance.new("Frame")
-			local TextLabel_6 = Instance.new("TextLabel")
-			local UIPadding_8 = Instance.new("UIPadding")
-			local UICorner_10 = Instance.new("UICorner")
-			local UIStroke_2 = Instance.new("UIStroke")
+			local TextLabel = Instance.new("TextLabel")
+			local UIPadding = Instance.new("UIPadding")
+			local UICorner = Instance.new("UICorner")
 			local TextButton = Instance.new("TextButton")
 			
 			Button.Name = "Button"
@@ -472,35 +473,32 @@ function SuperSploit:CreateLibrary(title)
 			Button.BorderSizePixel = 0
 			Button.Size = UDim2.new(0, 300, 0, 25)
 
-			TextLabel_6.Parent = Button
-			TextLabel_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_6.BackgroundTransparency = 1.000
-			TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel_6.BorderSizePixel = 0
-			TextLabel_6.Size = UDim2.new(0, 300, 0, 25)
-			TextLabel_6.Font = Enum.Font.Ubuntu
-			TextLabel_6.Text = txt
-			TextLabel_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_6.TextSize = 14.000
+			TextLabel.Parent = Button
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Size = UDim2.new(0, 300, 0, 25)
+			TextLabel.Font = Enum.Font.FredokaOne
+			TextLabel.Text = txt
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextSize = 14.000
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			UIPadding_8.Parent = TextLabel_6
-			UIPadding_8.PaddingLeft = UDim.new(0, 8)
+			UIPadding.Parent = TextLabel
+			UIPadding.PaddingLeft = UDim.new(0, 8)
 
-			UICorner_10.CornerRadius = UDim.new(0, 4)
-			UICorner_10.Parent = Button
-
-			UIStroke_2.Color = Color3.fromRGB(120, 120, 120)
-			UIStroke_2.Thickness = 1.5
-			UIStroke_2.Parent = Button
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = Button
 
 			TextButton.Parent = Button
 			TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			TextButton.BackgroundTransparency = 1.000
 			TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			TextButton.BorderSizePixel = 0
-			TextButton.Size = UDim2.new(0, 260, 0, 25)
+			TextButton.Size = UDim2.new(0, 300, 0, 25)
 			TextButton.AutoButtonColor = false
-			TextButton.Font = Enum.Font.Ubuntu
+			TextButton.Font = Enum.Font.FredokaOne
 			TextButton.Text = ""
 			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextButton.TextSize = 14.000
@@ -508,26 +506,24 @@ function SuperSploit:CreateLibrary(title)
 			TextButton.MouseEnter:Connect(function()
 				SuperSploit:Tween(Button, {BackgroundColor3 = Color3.fromRGB(50, 50, 50)})
 			end)
-			
+
 			TextButton.MouseLeave:Connect(function()
 				SuperSploit:Tween(Button, {BackgroundColor3 = Color3.fromRGB(40, 40, 40)})
 			end)
-			
+
 			TextButton.MouseButton1Click:Connect(function()
 				pcall(callback)
 			end)
 		end
 		
 		function GUI:CreateToggle(txt, callback)
-			
 			local Toggle = Instance.new("Frame")
-			local TextLabel_9 = Instance.new("TextLabel")
-			local UIPadding_11 = Instance.new("UIPadding")
-			local UICorner_15 = Instance.new("UICorner")
+			local TextLabel = Instance.new("TextLabel")
+			local UIPadding = Instance.new("UIPadding")
+			local UICorner = Instance.new("UICorner")
 			local ToggleFrame = Instance.new("Frame")
-			local TextButton_3 = Instance.new("TextButton")
-			local UICorner_17 = Instance.new("UICorner")
-			local UIStroke_2 = Instance.new("UIStroke")
+			local TextButton = Instance.new("TextButton")
+			local UICorner_2 = Instance.new("UICorner")
 			
 			Toggle.Name = "Toggle"
 			Toggle.Parent = Tab_2
@@ -535,69 +531,65 @@ function SuperSploit:CreateLibrary(title)
 			Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Toggle.BorderSizePixel = 0
 			Toggle.Size = UDim2.new(0, 300, 0, 25)
-			
+
+			TextLabel.Parent = Toggle
+			TextLabel.AnchorPoint = Vector2.new(1, 0)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(1, 0, 0, 0)
+			TextLabel.Size = UDim2.new(0, 280, 0, 25)
+			TextLabel.Font = Enum.Font.FredokaOne
+			TextLabel.Text = txt
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextSize = 14.000
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+			UIPadding.Parent = TextLabel
+			UIPadding.PaddingLeft = UDim.new(0, 8)
+
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = Toggle
+
 			ToggleFrame.Name = "ToggleFrame"
 			ToggleFrame.Parent = Toggle
 			ToggleFrame.AnchorPoint = Vector2.new(0, 0.5)
 			ToggleFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
 			ToggleFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ToggleFrame.BorderSizePixel = 0
-			ToggleFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
+			ToggleFrame.Position = UDim2.new(0.0199999996, 0, 0.5, 0)
 			ToggleFrame.Size = UDim2.new(0, 15, 0, 15)
 
-			UICorner_17.CornerRadius = UDim.new(0, 4)
-			UICorner_17.Parent = ToggleFrame
+			TextButton.Parent = Toggle
+			TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextButton.BorderSizePixel = 0
+			TextButton.Size = UDim2.new(0, 300, 0, 25)
+			TextButton.Font = Enum.Font.Ubuntu
+			TextButton.Text = ""
+			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton.TextSize = 14.000
+			TextButton.Transparency = 1
 
-			TextButton_3.Parent = Toggle
-			TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextButton_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextButton_3.BorderSizePixel = 0
-			TextButton_3.Size = UDim2.new(0, 300, 0, 25)
-			TextButton_3.Font = Enum.Font.Ubuntu
-			TextButton_3.Text = ""
-			TextButton_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextButton_3.TextSize = 14.000
-			TextButton_3.Transparency = 1
-
-			TextLabel_9.Parent = Toggle
-			TextLabel_9.AnchorPoint = Vector2.new(1, 0)
-			TextLabel_9.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_9.BackgroundTransparency = 1.000
-			TextLabel_9.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel_9.BorderSizePixel = 0
-			TextLabel_9.Position = UDim2.new(1, 0, 0, 0)
-			TextLabel_9.Size = UDim2.new(0, 280, 0, 25)
-			TextLabel_9.Font = Enum.Font.Ubuntu
-			TextLabel_9.Text = txt
-			TextLabel_9.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_9.TextSize = 14.000
-			TextLabel_9.TextXAlignment = Enum.TextXAlignment.Left
-
-			UIPadding_11.Parent = TextLabel_9
-			UIPadding_11.PaddingLeft = UDim.new(0, 8)
-
-			UICorner_15.CornerRadius = UDim.new(0, 4)
-			UICorner_15.Parent = Toggle
-
-			UIStroke_2.Color = Color3.fromRGB(120, 120, 120)
-			UIStroke_2.Thickness = 1.5
-			UIStroke_2.Parent = Toggle
+			UICorner_2.CornerRadius = UDim.new(0, 4)
+			UICorner_2.Parent = ToggleFrame
 			
 			local toggled = false
-			
-			TextButton_3.MouseEnter:Connect(function()
+
+			TextButton.MouseEnter:Connect(function()
 				if not toggled then
 					SuperSploit:Tween(ToggleFrame, {BackgroundColor3 = Color3.fromRGB(100, 100, 100)})
 				end
 			end)
 
-			TextButton_3.MouseLeave:Connect(function()
+			TextButton.MouseLeave:Connect(function()
 				if not toggled then
 					SuperSploit:Tween(ToggleFrame, {BackgroundColor3 = Color3.fromRGB(80, 80, 80)})
 				end
 			end)
 
-			TextButton_3.MouseButton1Click:Connect(function()
+			TextButton.MouseButton1Click:Connect(function()
 				toggled = not toggled
 				pcall(callback, toggled)
 				if toggled then
@@ -617,12 +609,9 @@ function SuperSploit:CreateLibrary(title)
 			local UICorner_2 = Instance.new("UICorner")
 			local SliderFill = Instance.new("Frame")
 			local UICorner_3 = Instance.new("UICorner")
-			local UIStroke_3 = Instance.new("UIStroke")
 			local SliderButton = Instance.new("TextButton")
 			local Value = Instance.new("TextLabel")
-
-			--Properties:
-
+			
 			Slider.Name = "Slider"
 			Slider.Parent = Tab_2
 			Slider.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -638,7 +627,7 @@ function SuperSploit:CreateLibrary(title)
 			TextLabel.BorderSizePixel = 0
 			TextLabel.Position = UDim2.new(1, 0, 0, 0)
 			TextLabel.Size = UDim2.new(0, 300, 0, 25)
-			TextLabel.Font = Enum.Font.Ubuntu
+			TextLabel.Font = Enum.Font.FredokaOne
 			TextLabel.Text = txt
 			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextLabel.TextSize = 14.000
@@ -649,10 +638,6 @@ function SuperSploit:CreateLibrary(title)
 
 			UICorner.CornerRadius = UDim.new(0, 4)
 			UICorner.Parent = Slider
-
-			UIStroke_3.Color = Color3.fromRGB(120, 120, 120)
-			UIStroke_3.Thickness = 1.5
-			UIStroke_3.Parent = Slider
 
 			SliderFrame.Name = "SliderFrame"
 			SliderFrame.Parent = Slider
@@ -671,7 +656,7 @@ function SuperSploit:CreateLibrary(title)
 			SliderFill.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			SliderFill.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SliderFill.BorderSizePixel = 0
-			SliderFill.Size = UDim2.new(0, 0, 0, 10)
+			SliderFill.Size = UDim2.new(0, 10, 0, 10)
 
 			UICorner_3.CornerRadius = UDim.new(0, 18)
 			UICorner_3.Parent = SliderFill
@@ -684,7 +669,7 @@ function SuperSploit:CreateLibrary(title)
 			SliderButton.BorderSizePixel = 0
 			SliderButton.Size = UDim2.new(0, 300, 0, 35)
 			SliderButton.AutoButtonColor = false
-			SliderButton.Font = Enum.Font.Ubuntu
+			SliderButton.Font = Enum.Font.FredokaOne
 			SliderButton.Text = ""
 			SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 			SliderButton.TextSize = 14.000
@@ -698,22 +683,22 @@ function SuperSploit:CreateLibrary(title)
 			Value.BorderSizePixel = 0
 			Value.Position = UDim2.new(0.980000019, 0, 0, 0)
 			Value.Size = UDim2.new(0, 50, 0, 25)
-			Value.Font = Enum.Font.Ubuntu
+			Value.Font = Enum.Font.FredokaOne
 			Value.Text = "0"
 			Value.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Value.TextSize = 14.000
 			Value.TextXAlignment = Enum.TextXAlignment.Right
-
+			
 			local SliderActive = false
 			local value = 0
-			
+
 			SliderButton.MouseButton1Down:Connect(function()
 				SliderActive = true
 				while SliderActive == true do
 					local Output = math.clamp((Mouse.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1)
 					local Percentage = (math.round(Output * 100))
 					local Rounded = math.floor((maxvalue / 100) * Percentage)
-					
+
 					if Rounded == 0 then
 						value = Rounded
 						Value.Text = tostring(Rounded)
@@ -731,10 +716,11 @@ function SuperSploit:CreateLibrary(title)
 				end
 				pcall(callback, value)
 			end)
-			
+
 			SliderButton.MouseButton1Up:Connect(function()
 				SliderActive = false
 			end)
+			
 			SliderButton.MouseLeave:Connect(function()
 				SliderActive = false
 			end)
@@ -745,7 +731,8 @@ function SuperSploit:CreateLibrary(title)
 			local TextLabel = Instance.new("TextLabel")
 			local UIPadding = Instance.new("UIPadding")
 			local UICorner = Instance.new("UICorner")
-			local ImageButton = Instance.new("ImageButton")
+			local TextButton = Instance.new("TextButton")
+			local ImageLabel = Instance.new("ImageLabel")
 			local ItemFrame = Instance.new("Frame")
 			local UIListLayout = Instance.new("UIListLayout")
 			
@@ -762,10 +749,10 @@ function SuperSploit:CreateLibrary(title)
 			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			TextLabel.BorderSizePixel = 0
 			TextLabel.Size = UDim2.new(0, 270, 0, 25)
-			TextLabel.Font = Enum.Font.Unknown
-			TextLabel.Text = "Dropdown"
+			TextLabel.Font = Enum.Font.FredokaOne
+			TextLabel.Text = txt
 			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel.TextSize = 10.000
+			TextLabel.TextSize = 14.000
 			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 			UIPadding.Parent = TextLabel
@@ -773,17 +760,28 @@ function SuperSploit:CreateLibrary(title)
 
 			UICorner.CornerRadius = UDim.new(0, 4)
 			UICorner.Parent = DropDown
+			
+			TextButton.Parent = DropDown
+			TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton.BackgroundTransparency = 1.000
+			TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextButton.BorderSizePixel = 0
+			TextButton.Size = UDim2.new(0, 300, 0, 25)
+			TextButton.AutoButtonColor = false
+			TextButton.Font = Enum.Font.FredokaOne
+			TextButton.Text = ""
+			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton.TextSize = 14.000
 
-			ImageButton.Parent = DropDown
-			ImageButton.AnchorPoint = Vector2.new(1, 0)
-			ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ImageButton.BackgroundTransparency = 1.000
-			ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			ImageButton.BorderSizePixel = 0
-			ImageButton.Position = UDim2.new(1, 0, 0, 0)
-			ImageButton.Size = UDim2.new(0, 25, 0, 25)
-			ImageButton.AutoButtonColor = false
-			ImageButton.Image = "http://www.roblox.com/asset/?id=18158472410"
+			ImageLabel.Parent = DropDown
+			ImageLabel.AnchorPoint = Vector2.new(1, 0)
+			ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ImageLabel.BackgroundTransparency = 1.000
+			ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ImageLabel.BorderSizePixel = 0
+			ImageLabel.Position = UDim2.new(1, 0, 0, 0)
+			ImageLabel.Size = UDim2.new(0, 25, 0, 25)
+			ImageLabel.Image = "http://www.roblox.com/asset/?id=18158472410"
 
 			ItemFrame.Name = "ItemFrame"
 			ItemFrame.Parent = DropDown
@@ -793,14 +791,15 @@ function SuperSploit:CreateLibrary(title)
 			ItemFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ItemFrame.BorderSizePixel = 0
 			ItemFrame.Position = UDim2.new(0, 0, 1, 0)
-			ItemFrame.Size = UDim2.new(0, 300, 0, 55)
+			ItemFrame.Size = UDim2.new(0, 300, 0, 0)
 			ItemFrame.Visible = false
+			ItemFrame.ClipsDescendants = true
 
 			UIListLayout.Parent = ItemFrame
 			UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			UIListLayout.Padding = UDim.new(0, 4)
-
+			
 			local function selectItem(option)
 
 				local success, errorMsg = pcall(function()
@@ -815,57 +814,59 @@ function SuperSploit:CreateLibrary(title)
 			end
 
 			for _, option in ipairs(options) do
-				local OptionButton = Instance.new("TextButton")
+				local TextButton = Instance.new("TextButton")
 				local UICorner_2 = Instance.new("UICorner")
 
-				OptionButton.Parent = ItemFrame
-				OptionButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
-				OptionButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				OptionButton.BorderSizePixel = 0
-				OptionButton.Size = UDim2.new(0, 280, 0, 25)
-				OptionButton.AutoButtonColor = false
-				OptionButton.Font = Enum.Font.Ubuntu
-				OptionButton.Text = option
-				OptionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-				OptionButton.TextSize = 14.000
+				TextButton.Parent = ItemFrame
+				TextButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+				TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextButton.BorderSizePixel = 0
+				TextButton.Position = UDim2.new(0, 0, 0.433333337, 0)
+				TextButton.Size = UDim2.new(0, 280, 0, 25)
+				TextButton.AutoButtonColor = false
+				TextButton.Font = Enum.Font.FredokaOne
+				TextButton.Text = option
+				TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+				TextButton.TextSize = 14.000
 
 				UICorner_2.CornerRadius = UDim.new(0, 4)
-				UICorner_2.Parent = OptionButton
+				UICorner_2.Parent = TextButton
 
-				OptionButton.MouseButton1Click:Connect(function()
+				TextButton.MouseButton1Click:Connect(function()
 					selectItem(option)
 				end)
 			end
-			
+
 			local state = false
-			
-			ImageButton.MouseButton1Click:Connect(function()
+
+			TextButton.MouseButton1Click:Connect(function()
 				if state then
 					state = false
-					ItemFrame.Visible = false
 					local newSize = UDim2.new(0, 300, 0, 25)
 					local newSize2 = UDim2.new(0, 300, 0, 0)
 					SuperSploit:Tween(DropDown, {Size = newSize})
-					ItemFrame.Size = newSize2
+					SuperSploit:Tween(ImageLabel, {Rotation = 0})
+					SuperSploit:Tween(ItemFrame, {Size = newSize2})
+					wait(tweenInfo.Time)
+					ItemFrame.Visible = false
 				else
 					state = true
 					ItemFrame.Visible = true
 					local newSize = UDim2.new(0, 300, 0, (#options * 32) + 25)
 					local newSize2 = UDim2.new(0, 300, 0, #options * 32)
 					SuperSploit:Tween(DropDown, {Size = newSize})
-					ItemFrame.Size = newSize2
+					SuperSploit:Tween(ImageLabel, {Rotation = 180})
+					SuperSploit:Tween(ItemFrame, {Size = newSize2})
 				end
 			end)
 		end
-
 		
 		function GUI:CreateInfo(txt)
 			local Info = Instance.new("Frame")
-			local TextLabel_4 = Instance.new("TextLabel")
-			local UIPadding_7 = Instance.new("UIPadding")
-			local ImageLabel_5 = Instance.new("ImageLabel")
-			local UICorner_8 = Instance.new("UICorner")
-			local UIStroke_5 = Instance.new("UIStroke")
+			local TextLabel = Instance.new("TextLabel")
+			local UIPadding = Instance.new("UIPadding")
+			local ImageLabel = Instance.new("ImageLabel")
+			local UICorner = Instance.new("UICorner")
 			
 			Info.Name = "Info"
 			Info.Parent = Tab_2
@@ -874,49 +875,44 @@ function SuperSploit:CreateLibrary(title)
 			Info.BorderSizePixel = 0
 			Info.Size = UDim2.new(0, 300, 0, 25)
 
-			TextLabel_4.Parent = Info
-			TextLabel_4.AnchorPoint = Vector2.new(1, 0)
-			TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_4.BackgroundTransparency = 1.000
-			TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel_4.BorderSizePixel = 0
-			TextLabel_4.Position = UDim2.new(1, 0, 0, 0)
-			TextLabel_4.Size = UDim2.new(0, 270, 0, 25)
-			TextLabel_4.Font = Enum.Font.Ubuntu
-			TextLabel_4.Text = txt
-			TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_4.TextSize = 14.000
-			TextLabel_4.TextXAlignment = Enum.TextXAlignment.Left
+			TextLabel.Parent = Info
+			TextLabel.AnchorPoint = Vector2.new(1, 0)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(1, 0, 0, 0)
+			TextLabel.Size = UDim2.new(0, 270, 0, 25)
+			TextLabel.Font = Enum.Font.FredokaOne
+			TextLabel.Text = txt
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextSize = 14.000
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			UIPadding_7.Parent = TextLabel_4
-			UIPadding_7.PaddingLeft = UDim.new(0, 8)
+			UIPadding.Parent = TextLabel
+			UIPadding.PaddingLeft = UDim.new(0, 8)
 
-			ImageLabel_5.Parent = Info
-			ImageLabel_5.AnchorPoint = Vector2.new(0.5, 0.5)
-			ImageLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ImageLabel_5.BackgroundTransparency = 1.000
-			ImageLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			ImageLabel_5.BorderSizePixel = 0
-			ImageLabel_5.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
-			ImageLabel_5.Size = UDim2.new(0, 25, 0, 25)
-			ImageLabel_5.Image = "http://www.roblox.com/asset/?id=18144243830"
-			ImageLabel_5.ScaleType = Enum.ScaleType.Fit
+			ImageLabel.Parent = Info
+			ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+			ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ImageLabel.BackgroundTransparency = 1.000
+			ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ImageLabel.BorderSizePixel = 0
+			ImageLabel.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
+			ImageLabel.Size = UDim2.new(0, 20, 0, 20)
+			ImageLabel.Image = "http://www.roblox.com/asset/?id=18144243830"
+			ImageLabel.ScaleType = Enum.ScaleType.Fit
 
-			UICorner_8.CornerRadius = UDim.new(0, 4)
-			UICorner_8.Parent = Info
-			
-			UIStroke_5.Color = Color3.fromRGB(0, 120, 180)
-			UIStroke_5.Thickness = 1.5
-			UIStroke_5.Parent = Info
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = Info
 		end
 		
 		function GUI:CreateStatusBad()
 			local StatusBad = Instance.new("Frame")
 			local TextLabel = Instance.new("TextLabel")
-			local UIPadding_4 = Instance.new("UIPadding")
-			local UICorner_5 = Instance.new("UICorner")
-			local UIStroke_6 = Instance.new("UIStroke")
-			local ImageLabel_2 = Instance.new("ImageLabel")
+			local UIPadding = Instance.new("UIPadding")
+			local UICorner = Instance.new("UICorner")
+			local ImageLabel = Instance.new("ImageLabel")
 			
 			StatusBad.Name = "StatusBad"
 			StatusBad.Parent = Tab_2
@@ -933,44 +929,38 @@ function SuperSploit:CreateLibrary(title)
 			TextLabel.BorderSizePixel = 0
 			TextLabel.Position = UDim2.new(1, 0, 0, 0)
 			TextLabel.Size = UDim2.new(0, 270, 0, 50)
-			TextLabel.Font = Enum.Font.Ubuntu
+			TextLabel.Font = Enum.Font.FredokaOne
 			TextLabel.Text = "This script is Broken Please Submit a ticket to our discord channel!"
 			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 			TextLabel.TextSize = 14.000
 			TextLabel.TextWrapped = true
 			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			UIPadding_4.Parent = TextLabel
-			UIPadding_4.PaddingLeft = UDim.new(0, 8)
-			UIPadding_4.PaddingRight = UDim.new(0, 8)
+			UIPadding.Parent = TextLabel
+			UIPadding.PaddingLeft = UDim.new(0, 8)
 
-			UICorner_5.CornerRadius = UDim.new(0, 4)
-			UICorner_5.Parent = StatusBad
-			
-			UIStroke_6.Color = Color3.fromRGB(180, 0, 0)
-			UIStroke_6.Thickness = 1.5
-			UIStroke_6.Parent = StatusBad
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = StatusBad
 
-			ImageLabel_2.Parent = StatusBad
-			ImageLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
-			ImageLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ImageLabel_2.BackgroundTransparency = 1.000
-			ImageLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			ImageLabel_2.BorderSizePixel = 0
-			ImageLabel_2.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
-			ImageLabel_2.Size = UDim2.new(0, 25, 0, 25)
-			ImageLabel_2.Image = "http://www.roblox.com/asset/?id=18144008577"
-			ImageLabel_2.ScaleType = Enum.ScaleType.Fit
+			ImageLabel.Parent = StatusBad
+			ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+			ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ImageLabel.BackgroundTransparency = 1.000
+			ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ImageLabel.BorderSizePixel = 0
+			ImageLabel.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
+			ImageLabel.Size = UDim2.new(0, 20, 0, 20)
+			ImageLabel.Image = "http://www.roblox.com/asset/?id=18144008577"
+			ImageLabel.ScaleType = Enum.ScaleType.Fit
 		end
 		
 		function GUI:CreateStatusOkay()
 			local StatusOkay = Instance.new("Frame")
-			local UICorner_6 = Instance.new("UICorner")
-			local ImageLabel_3 = Instance.new("ImageLabel")
-			local TextLabel_2 = Instance.new("TextLabel")
-			local UIPadding_5 = Instance.new("UIPadding")
-			local UIStroke_7 = Instance.new("UIStroke")
-			
+			local UICorner = Instance.new("UICorner")
+			local ImageLabel = Instance.new("ImageLabel")
+			local TextLabel = Instance.new("TextLabel")
+			local UIPadding = Instance.new("UIPadding")
+
 			StatusOkay.Name = "StatusOkay"
 			StatusOkay.Parent = Tab_2
 			StatusOkay.BackgroundColor3 = Color3.fromRGB(120, 120, 0)
@@ -978,50 +968,45 @@ function SuperSploit:CreateLibrary(title)
 			StatusOkay.BorderSizePixel = 0
 			StatusOkay.Size = UDim2.new(0, 300, 0, 50)
 
-			UICorner_6.CornerRadius = UDim.new(0, 4)
-			UICorner_6.Parent = StatusOkay
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = StatusOkay
 
-			ImageLabel_3.Parent = StatusOkay
-			ImageLabel_3.AnchorPoint = Vector2.new(0.5, 0.5)
-			ImageLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ImageLabel_3.BackgroundTransparency = 1.000
-			ImageLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			ImageLabel_3.BorderSizePixel = 0
-			ImageLabel_3.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
-			ImageLabel_3.Size = UDim2.new(0, 25, 0, 25)
-			ImageLabel_3.Image = "http://www.roblox.com/asset/?id=18144008577"
-			ImageLabel_3.ScaleType = Enum.ScaleType.Fit
+			ImageLabel.Parent = StatusOkay
+			ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+			ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ImageLabel.BackgroundTransparency = 1.000
+			ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ImageLabel.BorderSizePixel = 0
+			ImageLabel.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
+			ImageLabel.Size = UDim2.new(0, 20, 0, 20)
+			ImageLabel.Image = "http://www.roblox.com/asset/?id=18144008577"
+			ImageLabel.ScaleType = Enum.ScaleType.Fit
 
-			TextLabel_2.Parent = StatusOkay
-			TextLabel_2.AnchorPoint = Vector2.new(1, 0)
-			TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_2.BackgroundTransparency = 1.000
-			TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel_2.BorderSizePixel = 0
-			TextLabel_2.Position = UDim2.new(1, 0, 0, 0)
-			TextLabel_2.Size = UDim2.new(0, 270, 0, 50)
-			TextLabel_2.Font = Enum.Font.Ubuntu
-			TextLabel_2.Text = "This script is slightly Broken you may experience bugs while using it!"
-			TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_2.TextSize = 14.000
-			TextLabel_2.TextWrapped = true
-			TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+			TextLabel.Parent = StatusOkay
+			TextLabel.AnchorPoint = Vector2.new(1, 0)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(1, 0, 0, 0)
+			TextLabel.Size = UDim2.new(0, 270, 0, 50)
+			TextLabel.Font = Enum.Font.FredokaOne
+			TextLabel.Text = "This script is slightly Broken you may experience bugs while using it!"
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextSize = 14.000
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			UIPadding_5.Parent = TextLabel_2
-			UIPadding_5.PaddingLeft = UDim.new(0, 8)
-			
-			UIStroke_7.Color = Color3.fromRGB(180, 180, 0)
-			UIStroke_7.Thickness = 1.5
-			UIStroke_7.Parent = StatusOkay
+			UIPadding.Parent = TextLabel
+			UIPadding.PaddingLeft = UDim.new(0, 8)
 		end
 		
 		function GUI:CreateStatusGreat()
 			local StatusGreat = Instance.new("Frame")
-			local TextLabel_3 = Instance.new("TextLabel")
-			local UIPadding_6 = Instance.new("UIPadding")
-			local ImageLabel_4 = Instance.new("ImageLabel")
-			local UICorner_7 = Instance.new("UICorner")
-			local UIStroke_8 = Instance.new("UIStroke")
+			local TextLabel = Instance.new("TextLabel")
+			local UIPadding = Instance.new("UIPadding")
+			local ImageLabel = Instance.new("ImageLabel")
+			local UICorner = Instance.new("UICorner")
 			
 			StatusGreat.Name = "StatusGreat"
 			StatusGreat.Parent = Tab_2
@@ -1030,40 +1015,36 @@ function SuperSploit:CreateLibrary(title)
 			StatusGreat.BorderSizePixel = 0
 			StatusGreat.Size = UDim2.new(0, 300, 0, 25)
 
-			TextLabel_3.Parent = StatusGreat
-			TextLabel_3.AnchorPoint = Vector2.new(1, 0)
-			TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_3.BackgroundTransparency = 1.000
-			TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			TextLabel_3.BorderSizePixel = 0
-			TextLabel_3.Position = UDim2.new(1, 0, 0, 0)
-			TextLabel_3.Size = UDim2.new(0, 270, 0, 25)
-			TextLabel_3.Font = Enum.Font.Ubuntu
-			TextLabel_3.Text = "This script is fully operational!"
-			TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-			TextLabel_3.TextSize = 14.000
-			TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left
+			TextLabel.Parent = StatusGreat
+			TextLabel.AnchorPoint = Vector2.new(1, 0)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(1, 0, 0, 0)
+			TextLabel.Size = UDim2.new(0, 270, 0, 25)
+			TextLabel.Font = Enum.Font.FredokaOne
+			TextLabel.Text = "This script is fully operational!"
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextSize = 14.000
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			UIPadding_6.Parent = TextLabel_3
-			UIPadding_6.PaddingLeft = UDim.new(0, 8)
+			UIPadding.Parent = TextLabel
+			UIPadding.PaddingLeft = UDim.new(0, 8)
 
-			ImageLabel_4.Parent = StatusGreat
-			ImageLabel_4.AnchorPoint = Vector2.new(0.5, 0.5)
-			ImageLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			ImageLabel_4.BackgroundTransparency = 1.000
-			ImageLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			ImageLabel_4.BorderSizePixel = 0
-			ImageLabel_4.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
-			ImageLabel_4.Size = UDim2.new(0, 25, 0, 25)
-			ImageLabel_4.Image = "http://www.roblox.com/asset/?id=18144045750"
-			ImageLabel_4.ScaleType = Enum.ScaleType.Fit
+			ImageLabel.Parent = StatusGreat
+			ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+			ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ImageLabel.BackgroundTransparency = 1.000
+			ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ImageLabel.BorderSizePixel = 0
+			ImageLabel.Position = UDim2.new(0.0599999987, 0, 0.5, 0)
+			ImageLabel.Size = UDim2.new(0, 20, 0, 20)
+			ImageLabel.Image = "http://www.roblox.com/asset/?id=18144045750"
+			ImageLabel.ScaleType = Enum.ScaleType.Fit
 
-			UICorner_7.CornerRadius = UDim.new(0, 4)
-			UICorner_7.Parent = StatusGreat
-			
-			UIStroke_8.Color = Color3.fromRGB(60, 180, 0)
-			UIStroke_8.Thickness = 1.5
-			UIStroke_8.Parent = StatusGreat
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = StatusGreat
 		end
 	end
 	return GUI
