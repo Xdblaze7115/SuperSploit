@@ -1,7 +1,7 @@
 <h2>SuperSploit</h2>
 
 <h2>Load the Library</h2>
-<pre><code>local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xdblaze7115/SuperSploit/refs/heads/main/SuperSploit.lua", true))()</code></pre>
+<pre><code>local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xdblaze7115/SuperSploit/refs/heads/main/source.lua", true))()</code></pre>
 
 <h2>Create A Window</h2>
 <pre><code>local Window = Library:CreateLibrary("SuperSploit", "Game")</code></pre>
