@@ -162,9 +162,9 @@ if Game.PlaceId == 6000468131 then
 
 	function RemoveTagEsp(plr)
 		if plr.Character and plr.Character:FindFirstChild("Head") then
-			local head = plr.Character.Head
-			if head:FindFirstChild("NameEsp") then
-				head.Esp:Destroy()
+			local Head = plr.Character.Head
+			if Head:FindFirstChild("NameEsp") then
+				Head.NameEsp:Destroy()
 			end
 		end
 	end
@@ -257,29 +257,6 @@ if Game.PlaceId == 6000468131 then
 		if location2 then
 			for _, item in pairs(location2:GetChildren()) do
 				CreateEspForItem(item)
-			end
-		end
-	end
-
-	function RemoveItemEsp(location, location2)
-		for _, item in pairs(location:GetChildren()) do
-			if item:IsA("BasePart") then
-				for _, child in pairs(item:GetChildren()) do
-					if child.Name == "LimbEsp" or child.Name == "NameEsp" then
-						child:Destroy()
-					end
-				end
-			end
-		end
-		if location2 ~= nil then
-			for _, item in pairs(location2:GetChildren()) do
-				if item:IsA("BasePart") then
-					for _, child in pairs(item:GetChildren()) do
-						if child.Name == "LimbEsp" or child.Name == "NameEsp" then
-							child:Destroy()
-						end
-					end
-				end
 			end
 		end
 	end
