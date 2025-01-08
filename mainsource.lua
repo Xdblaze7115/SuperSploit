@@ -1,58 +1,126 @@
 if Game.PlaceId == 6000468131 then
 	local Players = game:GetService("Players")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+	_G.TagEsp = false
+	_G.LimbEsp = false
+	_G.ItemEsp = false
+
 	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xdblaze7115/SuperSploit/refs/heads/main/source.lua", true))()
-	local EspSettings = { TagEsp = false, LimbEsp = false, ItemEsp = false }
 
 	local Window = Library:CreateLibrary("SuperSploit", "Granny")
 
-	-- Player Tab
-	local PlayerTab = Window:CreateTab("Player")
-	PlayerTab:CreateSlider("WalkSpeed", 100, function(value)
-		local humanoid = Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild("Humanoid")
-		if humanoid then humanoid.WalkSpeed = value end
-	end)
-	PlayerTab:CreateSlider("JumpPower", 100, function(value)
-		local humanoid = Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild("Humanoid")
-		if humanoid then humanoid.JumpPower = value end
-	end)
+	local Tab = Window:CreateTab("Player")
 
-	-- Visual Tab
-	local VisualTab = Window:CreateTab("Visual")
-	VisualTab:CreateLabel("ESP")
-
-	-- Toggle ESP Features
-	VisualTab:CreateToggle("TagEsp", function(state)
-		EspSettings.TagEsp = state
-		for _, plr in pairs(Players:GetPlayers()) do
-			if plr ~= Players.LocalPlayer and plr.Character then
-				if state then AddTagEsp(plr) else RemoveTagEsp(plr) end
-			end
+	local Slider = Window:CreateSlider("WalkSpeed", 100, function(value)
+		if Players.LocalPlayer.Character then
+			Players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = value
 		end
 	end)
 
-	VisualTab:CreateToggle("LimbEsp", function(state)
-		EspSettings.LimbEsp = state
-		for _, plr in pairs(Players:GetPlayers()) do
-			if plr ~= Players.LocalPlayer and plr.Character then
-				if state then AddLimbEsp(plr) else RemoveLimbEsp(plr) end
-			end
+	local Slider = Window:CreateSlider("JumpPower", 100, function(value)
+		if Players.LocalPlayer.Character then
+			Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = value
 		end
 	end)
 
-	VisualTab:CreateToggle("ItemEsp", function(state)
-		EspSettings.ItemEsp = state
-		local mapLocation, charLocation
-		for _, obj in pairs(workspace.Map:GetChildren()) do
-			if obj.Name ~= "Players" and obj.Name ~= "Traps" then
-				mapLocation = obj.Tools.Map
-				charLocation = obj.Tools.Character
-			end
-		end
+	local Tab = Window:CreateTab("Visual")
+
+	local Label = Window:CreateLabel("ESP")
+
+	local Toggle = Window:CreateToggle("TagEsp", function(state)
 		if state then
-			if mapLocation and charLocation then AddItemEsp(mapLocation, charLocation) end
+			_G.TagEsp = true
+			for _, plr in pairs(Players:GetPlayers()) do
+				if plr ~= Players.LocalPlayer and plr.Character then
+					AddTagEsp(plr)
+				end
+			end
+			Players.PlayerAdded:Connect(function(plr)
+				if _G.TagEsp then
+					plr.CharacterAdded:Connect(function()
+						wait(1)
+						if plr ~= Players.LocalPlayer then
+							AddTagEsp(plr)
+						end
+					end)
+				end
+			end)
 		else
-			RemoveItemEsp(mapLocation, charLocation)
+			_G.TagEsp = false
+			for _, plr in pairs(Players:GetPlayers()) do
+				if plr ~= Players.LocalPlayer and plr.Character then
+					RemoveTagEsp(plr)
+				end
+			end
+		end
+	end)
+
+	local Toggle = Window:CreateToggle("LimbEsp", function(state)
+		if state then
+			_G.LimbEsp = true
+			for _, plr in pairs(Players:GetPlayers()) do
+				if plr ~= Players.LocalPlayer and plr.Character then
+					AddLimbEsp(plr)
+				end
+			end
+			Players.PlayerAdded:Connect(function(plr)
+				if _G.LimbEsp then
+					plr.CharacterAdded:Connect(function()
+						wait(1)
+						if plr ~= Players.LocalPlayer then
+							AddLimbEsp(plr)
+						end
+					end)
+				end
+			end)
+		else
+			_G.LimbEsp = false
+			for _, plr in pairs(Players:GetPlayers()) do
+				if plr ~= Players.LocalPlayer and plr.Character then
+					RemoveLimbEsp(plr)
+				end
+			end
+		end
+	end)
+
+	local Toggle = Window:CreateToggle("ItemEsp", function(state)
+		local MapLocation = nil
+		local CharacterLocation = nil
+
+		for _, v in pairs(workspace.Map:GetChildren()) do
+			if v.Name ~= "Players" and v.Name ~= "Traps" then
+				MapLocation = workspace.Map[v].Tools.Map
+				CharacterLocation = workspace.Map[v].Tools.Character
+			end
+		end
+
+		if state then
+			_G.ItemEsp = true
+
+			if MapLocation ~= nil and CharacterLocation ~= nil then
+				AddItemEsp(MapLocation, CharacterLocation)
+			end
+
+			ReplicatedStorage.Game.Start.Changed:Connect(function(v)
+				if v == true and _G.ItemEsp == true then
+					for _, v in pairs(workspace.Map:GetChildren()) do
+						if v.Name ~= "Players" and v.Name ~= "Traps" then
+							MapLocation = workspace.Map[v].Tools.Map
+							CharacterLocation = workspace.Map[v].Tools.Character
+						end
+					end
+
+					if MapLocation == nil then
+						return
+					end
+
+					AddItemEsp(MapLocation, CharacterLocation)
+				end
+			end)
+		else
+			_G.ItemEsp = false
+			RemoveItemEsp(MapLocation, CharacterLocation)
 		end
 	end)
 
