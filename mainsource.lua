@@ -1,4 +1,4 @@
-if Game.PlaceId == 6000468131 then
+if game.PlaceId == 6000468131 then
 	local Players = game:GetService("Players")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -100,31 +100,72 @@ if Game.PlaceId == 6000468131 then
 
 			if MapLocation or CharacterLocation then
 				AddItemEsp(MapLocation, CharacterLocation)
-			else
-				warn("Item locations not found!")
 			end
 
-			ReplicatedStorage.Game.Start.Changed:Connect(function(value)
-				if value and _G.ItemEsp then
-					for _, v in pairs(workspace.Map:GetChildren()) do
-						if v:FindFirstChild("Tools") then
-							MapLocation = v.Tools:FindFirstChild("Map")
-							CharacterLocation = v.Tools:FindFirstChild("Character")
+			Players.PlayerAdded:Connect(function(plr)
+				plr.CharacterAdded:Connect(function()
+					if _G.ItemEsp then
+						for _, v in pairs(workspace.Map:GetChildren()) do
+							if v:FindFirstChild("Tools") then
+								MapLocation = v.Tools:FindFirstChild("Map")
+								CharacterLocation = v.Tools:FindFirstChild("Character")
+							end
+						end
+
+						if MapLocation or CharacterLocation then
+							AddItemEsp(MapLocation, CharacterLocation)
 						end
 					end
-
-					if MapLocation or CharacterLocation then
-						AddItemEsp(MapLocation, CharacterLocation)
-					else
-						warn("Item locations not found on game start!")
-					end
-				end
+				end)
 			end)
 		else
 			_G.ItemEsp = false
 			for _, v in pairs(workspace:GetDescendants()) do
 				if v:IsA("BillboardGui") or v:IsA("SurfaceGui") then
 					if v.Name == "ItemNameEsp" or v.Name == "ItemEsp" then
+						v:Destroy()
+					end
+				end
+			end
+		end
+	end)
+	
+	local Toggle = Window:CreateToggle("InterationEsp", function(state)
+		local Interacts
+
+		for _, v in pairs(workspace.Map:GetChildren()) do
+			if v:FindFirstChild("Interacts") then
+				Interacts = v.Interacts
+			end
+		end
+
+		if state then
+			_G.ItemEsp = true
+
+			if Interacts then
+				AddInteractionEsp(Interacts)
+			end
+
+			Players.PlayerAdded:Connect(function(plr)
+				plr.CharacterAdded:Connect(function()
+					if _G.ItemEsp then
+						for _, v in pairs(workspace.Map:GetChildren()) do
+							if v:FindFirstChild("Interacts") then
+								Interacts = v.Interacts
+							end
+						end
+
+						if Interacts then
+							AddInteractionEsp(Interacts)
+						end
+					end
+				end)
+			end)
+		else
+			_G.ItemEsp = false
+			for _, v in pairs(workspace:GetDescendants()) do
+				if v:IsA("BillboardGui") or v:IsA("SurfaceGui") then
+					if v.Name == "InteractionNameEsp" or v.Name == "InterationEsp" then
 						v:Destroy()
 					end
 				end
@@ -258,6 +299,82 @@ if Game.PlaceId == 6000468131 then
 		if location2 then
 			for _, item in pairs(location2:GetChildren()) do
 				CreateEspForItem(item)
+			end
+		end
+	end
+	
+	function AddInteractionEsp(location)
+		local function CreateEspForBox(box, puzzle)
+			local Billboard = Instance.new("BillboardGui")
+			Billboard.Parent = box
+			Billboard.Name = "InteractionNameEsp"
+			Billboard.AlwaysOnTop = true
+			Billboard.Size = UDim2.new(2, 0, 2, 0)
+			Billboard.StudsOffset = Vector3.new(0, 2, 0)
+
+			local Label = Instance.new("TextLabel")
+			Label.Parent = Billboard
+			Label.Size = UDim2.new(1, 0, 1, 0)
+			Label.Font = Enum.Font.FredokaOne
+			Label.Text = puzzle.Name
+			Label.TextColor3 = Color3.new(1, 1, 1)
+			Label.BackgroundTransparency = 1
+			Label.TextScaled = true
+			
+			local Status = puzzle.Settings.Status
+			
+			if Status.Value ~= "PuzzleLocked" then
+				Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
+			else
+				Label.TextColor3 = Color3.new(1, 0, 0)
+			end
+			
+			Status.Changed:Connect(function(v)
+				if v ~= "PuzzleLocked" then
+					Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
+				end
+			end)
+
+			for _, face in pairs(Enum.NormalId:GetEnumItems()) do
+				local Surface = Instance.new("SurfaceGui")
+				Surface.Name = "InterationEsp"
+				Surface.Parent = box
+				Surface.Face = face
+				Surface.AlwaysOnTop = true
+
+				local Frame = Instance.new("Frame")
+				Frame.Parent = Surface
+				Frame.Size = UDim2.new(1, 0, 1, 0)
+				Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+				Frame.BackgroundTransparency = 0.5
+			end
+		end
+		
+		if location then
+			for _, interaction in pairs(location:GetChildren()) do
+				if interaction:FindFirstChild("Puzzles") then
+					local Puzzles = interaction:FindFirstChild("Puzzles")
+					
+					for _, puzzle in pairs(Puzzles:GetChildren()) do
+						if puzzle:FindFirstChild("Base") and puzzle:FindFirstChild("MeshPart") then
+							local Base = puzzle:FindFirstChild("Base")
+							local MeshPart = puzzle:FindFirstChild("MeshPart")
+							
+							CreateEspForBox(Base, puzzle)
+							CreateEspForBox(MeshPart, puzzle)
+						elseif puzzle:FindFirstChild("Base") then
+							local Base = puzzle:FindFirstChild("Base")
+
+							CreateEspForBox(Base, puzzle)
+						elseif puzzle:FindFirstChild("MeshPart") then
+							local MeshPart = puzzle:FindFirstChild("MeshPart")
+
+							CreateEspForBox(MeshPart, puzzle)
+						else
+							return
+						end
+					end
+				end
 			end
 		end
 	end
