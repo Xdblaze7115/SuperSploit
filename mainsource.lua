@@ -1,8 +1,10 @@
 if Game.PlaceId == 6000468131 then
 	local Players = game:GetService("Players")
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 	_G.TagEsp = false
 	_G.LimbEsp = false
+	_G.ItemEsp = false
 
 	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xdblaze7115/SuperSploit/refs/heads/main/source.lua", true))()
 
@@ -26,7 +28,7 @@ if Game.PlaceId == 6000468131 then
 
 	local Label = Window:CreateLabel("ESP")
 
-	local Toggle1 = Window:CreateToggle("TagEsp", function(state)
+	local Toggle = Window:CreateToggle("TagEsp", function(state)
 		if state then
 			_G.TagEsp = true
 			for _, plr in pairs(Players:GetPlayers()) do
@@ -54,7 +56,7 @@ if Game.PlaceId == 6000468131 then
 		end
 	end)
 
-	local Toggle2 = Window:CreateToggle("LimbEsp", function(state)
+	local Toggle = Window:CreateToggle("LimbEsp", function(state)
 		if state then
 			_G.LimbEsp = true
 			for _, plr in pairs(Players:GetPlayers()) do
@@ -81,6 +83,46 @@ if Game.PlaceId == 6000468131 then
 			end
 		end
 	end)
+	
+	local Toggle = Window:CreateToggle("ItemEsp", function(state)
+		local MapLocation = nil
+		local CharacterLocation = nil
+		
+		for _, v in pairs(workspace.Map:GetChildren()) do
+			if v.Name ~= "Players" or v.Name ~= "Traps" then
+				MapLocation = workspace.Map[v].Tools.Map
+				CharacterLocation = workspace.Map[v].Tools.Character
+			end
+		end
+		
+		if state then
+			_G.ItemEsp = true
+
+			if MapLocation ~= nil and CharacterLocation ~= nil then
+				AddItemEsp(MapLocation, CharacterLocation)
+			end
+			
+			ReplicatedStorage.Game.Start.Changed:Connect(function(v)
+				if v == true and _G.ItemEsp == true then
+					for _, v in pairs(workspace.Map:GetChildren()) do
+						if v.Name ~= "Players" or v.Name ~= "Traps" then
+							MapLocation = workspace.Map[v].Tools.Map
+							CharacterLocation = workspace.Map[v].Tools.Character
+						end
+					end
+
+					if MapLocation == nil then
+						return
+					end
+					
+					AddItemEsp(MapLocation, CharacterLocation)
+				end
+			end)
+		else
+			_G.ItemEsp = false
+			RemoveItemEsp(MapLocation, CharacterLocation)
+		end
+	end)
 
 	function AddTagEsp(plr)
 		if plr.Character then
@@ -88,7 +130,7 @@ if Game.PlaceId == 6000468131 then
 
 			local Esp = Instance.new("BillboardGui")
 			Esp.Parent = char:WaitForChild("Head")
-			Esp.Name = "Esp"
+			Esp.Name = "NameEsp"
 			Esp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 			Esp.AlwaysOnTop = true
 			Esp.Size = UDim2.new(2, 0, 2, 0)
@@ -114,7 +156,7 @@ if Game.PlaceId == 6000468131 then
 	function RemoveTagEsp(plr)
 		if plr.Character and plr.Character:FindFirstChild("Head") then
 			local head = plr.Character.Head
-			if head:FindFirstChild("Esp") then
+			if head:FindFirstChild("NameEsp") then
 				head.Esp:Destroy()
 			end
 		end
@@ -151,6 +193,123 @@ if Game.PlaceId == 6000468131 then
 				if part:IsA("BasePart") then
 					for _, child in pairs(part:GetChildren()) do
 						if child:IsA("SurfaceGui") and child.Name == "LimbEsp" then
+							child:Destroy()
+						end
+					end
+				end
+			end
+		end
+	end
+	
+	function AddItemEsp(location, location2)
+		for _, item in pairs(location:GetChildren()) do
+			if not item.Handle:FindFirstChild("ItemEsp") then
+				local Handle = item.Handle
+				
+				local Esp = Instance.new("BillboardGui")
+				Esp.Parent = Handle
+				Esp.Name = "NameEsp"
+				Esp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+				Esp.AlwaysOnTop = true
+				Esp.Size = UDim2.new(2, 0, 2, 0)
+				Esp.StudsOffset = Vector3.new(0, 2, 0)
+
+				local Frame = Instance.new("Frame")
+				Frame.Parent = Esp
+				Frame.BackgroundTransparency = 1
+				Frame.Size = UDim2.new(1, 0, 1, 0)
+
+				local Name = Instance.new("TextLabel")
+				Name.Parent = Frame
+				Name.Size = UDim2.new(1, 0, 1, 0)
+				Name.Position = UDim2.new(0, 0, 0, 0)
+				Name.Font = Enum.Font.FredokaOne
+				Name.Text = item.Name
+				Name.TextColor3 = Color3.new(1, 1, 1)
+				Name.BackgroundTransparency = 1
+				Name.TextScaled = true
+				
+				for _, face in pairs(Enum.NormalId:GetEnumItems()) do
+					local Esp = Instance.new("SurfaceGui")
+					Esp.Name = "ItemEsp"
+					Esp.Parent = Handle
+					Esp.Face = face
+					Esp.AlwaysOnTop = true
+					Esp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+					local Box = Instance.new("Frame")
+					Box.Parent = Esp
+					Box.Size = UDim2.new(1, 0, 1, 0)
+					Box.BackgroundColor3 = Color3.new(1, 1, 1)
+					Box.BackgroundTransparency = 0.5
+					Box.BorderSizePixel = 0
+				end
+			end
+		end
+
+		if location2 ~= nil then
+			for _, item in pairs(location2:GetChildren()) do
+				if not item.Handle:FindFirstChild("ItemEsp") then
+					local Handle = item.Handle
+
+					local Esp = Instance.new("BillboardGui")
+					Esp.Parent = Handle
+					Esp.Name = "Esp"
+					Esp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+					Esp.AlwaysOnTop = true
+					Esp.Size = UDim2.new(2, 0, 2, 0)
+					Esp.StudsOffset = Vector3.new(0, 2, 0)
+
+					local Frame = Instance.new("Frame")
+					Frame.Parent = Esp
+					Frame.BackgroundTransparency = 1
+					Frame.Size = UDim2.new(1, 0, 1, 0)
+
+					local Name = Instance.new("TextLabel")
+					Name.Parent = Frame
+					Name.Size = UDim2.new(1, 0, 1, 0)
+					Name.Position = UDim2.new(0, 0, 0, 0)
+					Name.Font = Enum.Font.FredokaOne
+					Name.Text = item.Name
+					Name.TextColor3 = Color3.new(1, 1, 1)
+					Name.BackgroundTransparency = 1
+					Name.TextScaled = true
+
+					for _, face in pairs(Enum.NormalId:GetEnumItems()) do
+						local Esp = Instance.new("SurfaceGui")
+						Esp.Name = "ItemEsp"
+						Esp.Parent = Handle
+						Esp.Face = face
+						Esp.AlwaysOnTop = true
+						Esp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+						local Box = Instance.new("Frame")
+						Box.Parent = Esp
+						Box.Size = UDim2.new(1, 0, 1, 0)
+						Box.BackgroundColor3 = Color3.new(1, 1, 1)
+						Box.BackgroundTransparency = 0.5
+						Box.BorderSizePixel = 0
+					end
+				end
+			end
+		end
+	end
+	
+	function RemoveItemEsp(location, location2)
+		for _, item in pairs(location:GetChildren()) do
+				if item:IsA("BasePart") then
+					for _, child in pairs(item:GetChildren()) do
+					if child.Name == "LimbEsp" or child.Name == "NameEsp" then
+						child:Destroy()
+					end
+				end
+			end
+		end
+		if location2 ~= nil then
+			for _, item in pairs(location2:GetChildren()) do
+				if item:IsA("BasePart") then
+					for _, child in pairs(item:GetChildren()) do
+						if child.Name == "LimbEsp" or child.Name == "NameEsp" then
 							child:Destroy()
 						end
 					end
