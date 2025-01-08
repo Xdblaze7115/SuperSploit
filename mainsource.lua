@@ -5,6 +5,7 @@ if game.PlaceId == 6000468131 then
 	_G.TagEsp = false
 	_G.LimbEsp = false
 	_G.ItemEsp = false
+	_G.InteractionEsp = false
 
 	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xdblaze7115/SuperSploit/refs/heads/main/source.lua", true))()
 
@@ -140,7 +141,7 @@ if game.PlaceId == 6000468131 then
 		end
 
 		if state then
-			_G.ItemEsp = true
+			_G.InteractionEsp = true
 
 			if Interacts then
 				AddInteractionEsp(Interacts)
@@ -148,7 +149,7 @@ if game.PlaceId == 6000468131 then
 
 			Players.PlayerAdded:Connect(function(plr)
 				plr.CharacterAdded:Connect(function()
-					if _G.ItemEsp then
+					if _G.InteractionEsp then
 						for _, v in pairs(workspace.Map:GetChildren()) do
 							if v:FindFirstChild("Interacts") then
 								Interacts = v.Interacts
@@ -162,7 +163,7 @@ if game.PlaceId == 6000468131 then
 				end)
 			end)
 		else
-			_G.ItemEsp = false
+			_G.InteractionEsp = false
 			for _, v in pairs(workspace:GetDescendants()) do
 				if v:IsA("BillboardGui") or v:IsA("SurfaceGui") then
 					if v.Name == "InteractionNameEsp" or v.Name == "InterationEsp" then
@@ -324,14 +325,14 @@ if game.PlaceId == 6000468131 then
 			local Status = puzzle.Settings.Status
 			
 			if Status.Value ~= "PuzzleLocked" then
-				Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
-			else
 				Label.TextColor3 = Color3.new(1, 0, 0)
+			else
+				Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
 			end
 			
 			Status.Changed:Connect(function(v)
 				if v ~= "PuzzleLocked" then
-					Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
+					Label.TextColor3 = Color3.new(1, 0, 0)
 				end
 			end)
 
@@ -356,22 +357,12 @@ if game.PlaceId == 6000468131 then
 					local Puzzles = interaction:FindFirstChild("Puzzles")
 					
 					for _, puzzle in pairs(Puzzles:GetChildren()) do
-						if puzzle:FindFirstChild("Base") and puzzle:FindFirstChild("MeshPart") then
-							local Base = puzzle:FindFirstChild("Base")
-							local MeshPart = puzzle:FindFirstChild("MeshPart")
-							
-							CreateEspForBox(Base, puzzle)
-							CreateEspForBox(MeshPart, puzzle)
-						elseif puzzle:FindFirstChild("Base") then
-							local Base = puzzle:FindFirstChild("Base")
-
-							CreateEspForBox(Base, puzzle)
-						elseif puzzle:FindFirstChild("MeshPart") then
-							local MeshPart = puzzle:FindFirstChild("MeshPart")
-
-							CreateEspForBox(MeshPart, puzzle)
-						else
-							return
+						print(1 .. puzzle.Name)
+						for _, part in pairs(puzzle:GetDescendants()) do
+							if part:IsA("BasePart") and part.Name == "Base" then
+								print(3 .. puzzle.Name)
+								CreateEspForBox(part, puzzle)
+							end
 						end
 					end
 				end
