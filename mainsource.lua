@@ -20,6 +20,7 @@ if Game.PlaceId == 6000468131 then
 
 	local Slider = Window:CreateSlider("JumpPower", 100, function(value)
 		if Players.LocalPlayer.Character then
+			Players.LocalPlayer.Character:WaitForChild("Humanoid").UseJumpPower = true
 			Players.LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = value
 		end
 	end)
