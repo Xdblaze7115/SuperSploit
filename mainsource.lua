@@ -326,7 +326,7 @@ if game.PlaceId == 6000468131 then
 			
 			local Status = puzzle.Settings.Status
 			
-			if Status.Value ~= "PuzzleLocked" or Status.Value ~= "Success" then
+			if Status.Value == "PuzzleLocked" then
 				Label.TextColor3 = Color3.new(1, 0, 0)
 			else
 				Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
