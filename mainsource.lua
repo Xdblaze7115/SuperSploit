@@ -39,14 +39,14 @@ if game.PlaceId == 6000468131 then
 				end
 			end
 			Players.PlayerAdded:Connect(function(plr)
-				if _G.TagEsp then
-					plr.CharacterAdded:Connect(function()
-						wait(1)
+				plr.CharacterAdded:Connect(function()
+					if _G.TagEsp then
+						wait(2)
 						if plr ~= Players.LocalPlayer then
 							AddTagEsp(plr)
 						end
-					end)
-				end
+					end
+				end)
 			end)
 		else
 			_G.TagEsp = false
@@ -67,14 +67,14 @@ if game.PlaceId == 6000468131 then
 				end
 			end
 			Players.PlayerAdded:Connect(function(plr)
-				if _G.LimbEsp then
-					plr.CharacterAdded:Connect(function()
-						wait(1)
+				plr.CharacterAdded:Connect(function()
+					wait(2)
+					if _G.LimbEsp then
 						if plr ~= Players.LocalPlayer then
 							AddLimbEsp(plr)
 						end
-					end)
-				end
+					end
+				end)
 			end)
 		else
 			_G.LimbEsp = false
@@ -105,6 +105,7 @@ if game.PlaceId == 6000468131 then
 
 			Players.PlayerAdded:Connect(function(plr)
 				plr.CharacterAdded:Connect(function()
+					wait(2)
 					if _G.ItemEsp then
 						for _, v in pairs(workspace.Map:GetChildren()) do
 							if v:FindFirstChild("Tools") then
@@ -149,6 +150,7 @@ if game.PlaceId == 6000468131 then
 
 			Players.PlayerAdded:Connect(function(plr)
 				plr.CharacterAdded:Connect(function()
+					wait(2)
 					if _G.InteractionEsp then
 						for _, v in pairs(workspace.Map:GetChildren()) do
 							if v:FindFirstChild("Interacts") then
@@ -324,7 +326,7 @@ if game.PlaceId == 6000468131 then
 			
 			local Status = puzzle.Settings.Status
 			
-			if Status.Value ~= "PuzzleLocked" then
+			if Status.Value ~= "PuzzleLocked" or Status.Value ~= "Success" then
 				Label.TextColor3 = Color3.new(1, 0, 0)
 			else
 				Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
@@ -333,6 +335,8 @@ if game.PlaceId == 6000468131 then
 			Status.Changed:Connect(function(v)
 				if v ~= "PuzzleLocked" then
 					Label.TextColor3 = Color3.new(1, 0, 0)
+				else
+					Label.TextColor3 = Color3.new(0.333333, 1, 0.498039)
 				end
 			end)
 
@@ -360,7 +364,7 @@ if game.PlaceId == 6000468131 then
 						print(1 .. puzzle.Name)
 						for _, part in pairs(puzzle:GetDescendants()) do
 							if part:IsA("BasePart") and part.Name == "Base" then
-								print(3 .. puzzle.Name)
+								print(3 .. part.Name)
 								CreateEspForBox(part, puzzle)
 							end
 						end
