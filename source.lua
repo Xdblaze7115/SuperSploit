@@ -71,7 +71,7 @@ function SuperSploit:CreateLibrary(title, gametxt)
 	local UIPadding_3 = Instance.new("UIPadding")
 
 	SuperSploitGUI.Name = "SuperSploit"
-	SuperSploitGUI.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+	SuperSploitGUI.Parent = CoreGui
 	SuperSploitGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	SuperSploitGUI.ResetOnSpawn = false
 
