@@ -1,5 +1,8 @@
 <h2>SuperSploit</h2>
 
+<p>Script Hub</p>
+<pre><code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Xdblaze7115/SuperSploit/refs/heads/main/mainsource.lua", true))()</code></pre>
+
 <h2>Load the Library</h2>
 <pre><code>local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xdblaze7115/SuperSploit/refs/heads/main/source.lua", true))()</code></pre>
 
