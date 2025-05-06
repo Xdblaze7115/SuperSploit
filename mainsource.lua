@@ -1,4 +1,4 @@
-local scriptUrl = "https://raw.githubusercontent.com/Xdblaze7115/Scripts/refs/heads/main/" .. game.PlaceId .. ".lua"
+local scriptUrl = "https://raw.githubusercontent.com/Xdblaze7115/Scripts/refs/heads/main/" .. game.PlaceId .. ".lua?token=GHSAT0AAAAAADDJDH5A6FR7ADS2OOKQ3E7Y2A2UHTQ"
 
 local success, result = pcall(function()
     return game:HttpGet(scriptUrl, true)
